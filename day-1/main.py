@@ -16,7 +16,7 @@ def move_left(dial, steps):
 
 #main function
 def processInput():
-       with open("test_input.txt") as file:
+       with open("input.txt") as file:
             dial = 50
             numberOf0s = 0
             print("The current number of zeros at the start is [" + str(numberOf0s) + "]")
@@ -26,13 +26,13 @@ def processInput():
                     remove_letter=line[1:]
                     dial = (move_left(dial, steps=int(remove_letter)))
                     if dial == 0:
-                        numberOf0s + 1
+                        numberOf0s += 1
                         print("The number of 0s is" + str(numberOf0s))
                 else:
                     remove_letter=line[1:]
                     dial = (move_right(dial, steps=int(remove_letter)))
                     if dial == 0:
-                        numberOf0s + 1
+                        numberOf0s += 1
                         print("The number of 0s is" + str(numberOf0s))
                     
 
