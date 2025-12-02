@@ -1,37 +1,42 @@
 import os
 
-dial = 50
 size = 100
-numberOf0s = 0
 
-def move_right(dial, steps=1):
-    return (dial + steps) % size
+#move dial to right
+def move_right(dial, steps):
+    dial = (dial + steps) % size
+    print(str(dial) + " moved to right")
+    return dial
 
-def move_left(dial, steps=1):
-    return (dial - steps) % size
+#move dial to left
+def move_left(dial, steps):
+    dial = (dial - steps) % size
+    print(str(dial) + " moved to left")
+    return dial
 
+#main function
 def processInput():
-       with open("./input.txt") as file:
-              lines = file.readlines()
-              for line in lines:
-                     print("reading file")
-                     print(line)
-                     print("finished reading file")
+       with open("test_input.txt") as file:
+            dial = 50
+            numberOf0s = 0
+            print("The current number of zeros at the start is [" + str(numberOf0s) + "]")
+            lines = file.readlines()
+            for line in lines:
+                if line.startswith("L"):
+                    remove_letter=line[1:]
+                    dial = (move_left(dial, steps=int(remove_letter)))
+                    if dial == 0:
+                        numberOf0s + 1
+                        print("The number of 0s is" + str(numberOf0s))
+                else:
+                    remove_letter=line[1:]
+                    dial = (move_right(dial, steps=int(remove_letter)))
+                    if dial == 0:
+                        numberOf0s + 1
+                        print("The number of 0s is" + str(numberOf0s))
+                    
 
+            print("The number of zeros at the end is [" + str(numberOf0s) + "]")
+
+                        
 processInput()
-
-# def findStudent(school_file, student_name):
-#         with open(school_file) as file:
-#                 lines = file.readlines()
-#                 is_student_in_file = False
-#                 foundStudentName = ""
-#                 for line in lines:
-#                         #checks for user in text file but ignores case sensitivity https://www.geeksforgeeks.org/case-insensitive-string-comparison-in-python/
-#                         if student_name in line.casefold():
-#                                 is_student_in_file = True
-#                                 foundStudentName = (line.strip("\n"))
-
-#                 if is_student_in_file == True:
-#                         print(foundStudentName)
-#                 else:
-#                         print("Student not found")
